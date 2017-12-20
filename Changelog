@@ -1,0 +1,178 @@
+2017-08-28: version 0.39
+1. del_word支持强行拆开词语;  by @gumblex,@fxsjy
+2. 修复百分数的切词; by @fxsjy
+3. 修复HMM=False在多进程模式下的bug; by @huntzhan
+
+2015-12-16: version 0.38
+1. 通过pkg_resources载入默认词典，支持在Spark等平台上运行, by @gumblex;
+2. 扩充识别的汉字unicode范围：[\u4E00-\u9FD5], by @gumblex;
+3. 关键词提取支持返回词性，修复posseg分词得到的pair做dict关键字的问题，by @jerryday；
+4. 修复load_userdict加载用户词典不能识别含有空格等特殊字符的问题， by @gumblex;
+5. 命令行分词支持返回词性， by @gumblex;
+
+2015-06-27: version 0.37
+1. 代码重构，分词器封装为Class，支持实例化，by @gumblex (https://github.com/fxsjy/jieba/commit/94840a734c32cfece05c0c3ec236ffc3d36b4ae6)
+2. 修复cut_for_search的bug，完善posseg； by @gumblex
+3. 修复posseg在0.36中引入的一处bug; by @wangbin
+4. 修复load_userdict异常处理的bug; by @gip0
+5. 修复生成词典二进制cache文件时跨文件系统的bug, 支持自定义; by @gumblex 
+
+2015-03-20: version 0.36
+1. 代码同时兼容python2与python3, 若干性能优化; by @gumblex 
+2. 解决用户添加词的概率自动计算问题，分词更加准确；by @gumblex 
+3. 可自定义cache_file的文件系统路径; by @changyy
+4. TextRank算法实现完善; by @sing1ee，@walkskyer
+
+2014-11-15: version 0.35.1
+1. 修复 Python 3.2 的兼容性问题
+
+2014-11-13: version 0.35
+1. 改进词典cache的dump和加载机制；by @gumblex
+2. 提升关键词提取的性能; by @gumblex
+3. 关键词提取新增基于textrank算法的子模块; by @singlee
+4. 修复自定义stopwords功能的bug; by @walkskyer
+
+
+2014-10-20: version 0.34
+1. 提升性能，词典结构由Trie改为Prefix Set，内存占用减少2/3, 详见：https://github.com/fxsjy/jieba/pull/187；by @gumblex
+2. 修复关键词提取功能的性能问题
+
+2014-08-31: version 0.33
+1. 支持自定义stop words; by @fukuball
+2. 支持自定义idf词典; by @fukuball
+3. 修复自定义词典的词性不能正常显示的bug; by @ShuraChow
+
+
+2014-02-07: version 0.32
+1. 新增分词选项：可以关闭新词发现功能；详见：https://github.com/fxsjy/jieba/blob/master/test/test_no_hmm.py#L8
+2. 修复posseg子模块的Bug；详见: https://github.com/fxsjy/jieba/issues/111 https://github.com/fxsjy/jieba/issues/132
+3. ChineseAnalyzer提供了更好的英文支持(感谢@jannson)，例如单词Stemming； 详见：https://github.com/fxsjy/jieba/pull/106
+
+
+
+2013-07-01: version 0.31
+1. 修改了代码缩进格式，遵循PEP8标准
+2. 支持Jython解析器，感谢 @piaolingxue
+3. 修复中英混合词汇不能识别数字在前词语的Bug
+4. 部分代码重构，感谢 @chao78787
+5. 多进程并行分词模式下自动检测CPU个数设置合适的进程数，感谢@linkerlin
+6. 修复了0.3版中jieba.extra_tags方法对whoosh模块的错误依赖
+
+
+
+2013-07-01: version 0.30
+==========================
+1) 新增jieba.tokenize方法，返回每个词的起始位置
+2) 新增ChineseAnalyzer，用于支持whoosh搜索引擎
+3）添加了更多的中英混合词汇
+4）修改了一些py文件的加载方法，从而支持py2exe,cxfree打包为exe
+
+2013-06-17: version 0.29.1
+==========================
+1) 优化了viterbi算法的代码，分词速度提升15%
+2) 去除了词典中的一些低质词
+
+2013-06-07: version 0.29
+==========================
+1) 提升了finalseg子模块命名体识别的准确度
+2) 修正了一些badcase
+
+2013-06-01: version 0.28.4
+==========================
+1) 修正了一些badcase
+2) add wraps decorator, by @cloudaice
+3) unittest, by @cloudaice
+
+2013-05-02: version 0.28.3
+==========================
+1) 修正了临时cache文件生成在pypy解析器下出错的问题
+
+2013-04-28: version 0.28.2
+==========================
+1) 修正了initialize函数默认参数绑定的bug.
+
+2013-04-27: version 0.28
+========================
+1) 新增词典lazy load功能，用户可以在'import jieba'后再改变词典的路径. 感谢hermanschaaf
+2) 显示词典加载异常时错误的词条信息. 感谢neuront
+3) 修正了词典被vim编辑后会加载失败的bug. 感谢neuront
+
+2013-04-22: version 0.27
+========================
+1) 新增并行分词功能，可以在多核计算机上显著提高分词速度
+2) 修正了“的”字频过高引起的bug；修正了对小数点和下划线的处理
+3) 修正了python2.6存在的兼容性问题
+
+
+2013-04-07: version 0.26
+========================
+1) 改进了对标点符号的处理，之前的版本会过滤掉所有的标点符号;
+2) 允许用户在自定义词典中添加词性;
+3) 改进了关键词提取的功能jieba.analyse.extract_tags;
+4) 修复了一个在pypy解释器下运行的bug.
+
+
+2013-02-18: version 0.25
+========================
+1）支持繁体中文的分词
+2）修正了多python进程时生成cache文件失败的bug
+
+
+2012-12-28: version 0.24
+========================
+1) 解决了没有标点的长句子分词效果差的问题，问题在于连续的小概率乘法可能会导致浮点下溢或为0.
+2) 修复了0.23的全模式下英文分词的bug
+
+
+2012-12-12: version 0.23
+========================
+1) 修复了之前版本不能识别中英混合词语的问题
+
+
+2012-11-28: version 0.22
+========================
+1) 新增jieba.cut_for_search方法， 该方法在精确分词的基础上对“长词”进行再次切分，适用于搜索引擎领域的分词，比精确分词模式有更高的召回率。
+2) 开始支持Python3.x版。 之前一直是只支持Python2.x系列，从这个版本起有一个单独的jieba3k
+
+
+2012-11-23: version 0.21
+========================
+1) 修复了全模式分词中散字过多的问题
+2) 用户自定义词典函数load_userdict支持file-like object作为输入
+
+
+2012-11-06: version 0.20
+========================
+1) 新增词性标注功能
+
+
+2012-10-25: version 0.19
+========================
+1) 提升了模块加载的速度
+2) 增加了用户自定义词典的接口
+
+
+2012-10-16: version 0.18
+========================
+1) 增加关键词提取功能
+
+
+2012-10-12: version 0.17
+========================
+1） 将词典文件dict.txt排序后存储，提升了Trie树构建速度，使得组件初始化时间缩短了10%;
+2)  增强了人名词语的训练，增强了未登录人名词语的识别能力
+
+
+2012-10-09: version 0.16
+========================
+1）将求最优切分路径的记忆化递归搜索算法改用循环实现，使分词速度提高了15%
+
+2) 修复了Viterbi算法实现上的一个Bug
+
+
+2012-10-07: version 0.14
+========================
+1) 结巴分词被发布到了pypi，用户可以通过easy_install或者pip快速安装该组件；
+2) 合并了搜狗开源词库2006版，删除了一些低频词
+3) 优化了代码，缩短了程序初始化时间。
+4) 增加了在线效果演示
