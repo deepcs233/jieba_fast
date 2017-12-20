@@ -1,13 +1,13 @@
 jieba_fast
 ========
-使用`cpython`重写了原作者计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
+使用`python`重写了原作者计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
 使用`import jieba_fast as jieba` 可以无缝衔接源代码。
 
 特点
 ========
 * 对两种分词模式进行的加速：精确模式，搜索引擎模式
-* 利用`cpython`重新实现了viterbi算法，使默认带HMM的切词模式速度大幅提升
-* 利用`cpython`重新实现了生成DAG以及从DAG计算最优路径的算法，速度大幅提升
+* 利用`cython`重新实现了viterbi算法，使默认带HMM的切词模式速度大幅提升
+* 利用`cython`重新实现了生成DAG以及从DAG计算最优路径的算法，速度大幅提升
 * 基本只是替换了核心函数，对源代码的侵入型很小
 * MIT 授权协议
 
@@ -19,7 +19,7 @@ jieba_fast
 
 代码目前对 Python 2/3 兼容，对*unix兼容良好，对windows不能保证
 
-* 全自动安装：`pip install jieba_fast` 
+* 全自动安装：`pip install jieba_fast`
 * 半自动安装：先下载 http://pypi.python.org/pypi/jieba_fast/ ，解压后运行 `python setup.py install`
 
 
@@ -109,3 +109,5 @@ Are they exactly the same?  True
 ======
 
 "结巴"中文分词作者: [SunJunyi](https://github.com/fxsjy)
+
+源码见 source/
