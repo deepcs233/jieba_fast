@@ -17,7 +17,7 @@ jieba_fast
 
 代码目前仅对 Python 2 兼容
 
-* 全自动安装：`pip install jieba_fast` 
+* 全自动安装：`pip install jieba_fast`
 * 半自动安装：先下载 http://pypi.python.org/pypi/jieba_fast/ ，解压后运行 `python setup.py install`
 
 
@@ -65,6 +65,7 @@ print('-'.join(jieba.lcut(text, HMM=False)))
 测试过程：
 先按行读取文本《围城》到一个数组里，然后循环对《围城》每行文字作为一个句子进行分词。然后循环对围城这本书分词50次。分词算法分别采用【开启HMM的精确模式】、【关闭HMM的精确模式】、【开启HMM的搜索引擎模式】、【开启HMM的搜索引擎模式】
 具体测试数据如下：
+
 |            | 开启HMM的精确模式 | 关闭HMM的精确模式 | 开启HMM的搜索引擎模式 | 关闭HMM的搜索引擎模式 |
 | ---------- | ---------- | ---------- | ------------ | ------------ |
 | jieba      | 65.1s      | 39.9s      | 67.5s        | 40.5s        |
@@ -91,3 +92,7 @@ nums of jieba      results:  597151
 nums of jieba_fast results:  597151
 Are they exactly the same?  True
 ```
+
+鸣谢
+======
+"结巴"中文分词作者: SunJunyi
