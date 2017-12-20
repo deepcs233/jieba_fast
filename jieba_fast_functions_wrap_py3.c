@@ -2994,16 +2994,16 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 #endif
 
 /*-----------------------------------------------
-              @(target):= _chartest.so
+              @(target):= _jieba_fast_functions.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__chartest
+#  define SWIG_init    PyInit__jieba_fast_functions
 
 #else
-#  define SWIG_init    init_chartest
+#  define SWIG_init    init_jieba_fast_functions
 
 #endif
-#define SWIG_name    "_chartest"
+#define SWIG_name    "_jieba_fast_functions"
 
 #define SWIGVERSION 0x030012 
 #define SWIG_VERSION SWIGVERSION
@@ -3017,20 +3017,21 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 #include <math.h>
 #include <float.h>
 #include <stdlib.h>
-//using namespace std;
+
 
 int _calc(PyObject* FREQ, PyObject* sentence,PyObject* DAG, PyObject * route, double total)
 {
     const Py_ssize_t N = PySequence_Size(sentence);
     const double logtotal = log(total);
-    double max_freq,fq,fq_2,fq_last;
-    Py_ssize_t max_x,idx,i,t_list_len,x;
-    PyObject* t_list, *slice_of_sentence,*o_freq,*t_tuple,*tuple_last;
+    double max_freq, fq, fq_2, fq_last;
+    Py_ssize_t max_x, idx,i, t_list_len, x;
+    PyObject* t_list, *slice_of_sentence, *o_freq, *t_tuple, *tuple_last;
     PyObject* temp_tuple = PyTuple_New(2);
+
     PyTuple_SetItem(temp_tuple, 0, PyInt_FromLong(0l));
     PyTuple_SetItem(temp_tuple, 1, PyInt_FromLong(0l));
     PyDict_SetItem(route, PyInt_FromLong((long)N), temp_tuple);
-    
+
     for(idx = N - 1; idx >= 0 ;idx--)
     {
         max_freq = INT_MIN;
@@ -3068,8 +3069,8 @@ int _calc(PyObject* FREQ, PyObject* sentence,PyObject* DAG, PyObject * route, do
 int _get_DAG(PyObject* DAG, PyObject* FREQ, PyObject* sentence)
 {
     const Py_ssize_t N = PySequence_Size(sentence);
-    PyObject* tmplist,*frag;
-    Py_ssize_t i,k;
+    PyObject *tmplist, *frag;
+    Py_ssize_t i, k;
     for(k = 0; k< N;k++)
     {
         tmplist = PyList_New(0);
@@ -3096,8 +3097,8 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
     const Py_ssize_t N = PySequence_Size(sentence);
     Py_ssize_t (*DAG)[12] = malloc(sizeof(Py_ssize_t)*12*N);
     Py_ssize_t *points = (Py_ssize_t*)malloc(sizeof(Py_ssize_t)*N);
-    Py_ssize_t k, i,idx,max_x,t_list_len, fq, x;
-    PyObject* frag, *t_f, *slice_of_sentence, *o_freq;
+    Py_ssize_t k, i, idx, max_x, t_list_len, fq, x;
+    PyObject *frag, *t_f, *slice_of_sentence, *o_freq;
     double (*_route)[2] = malloc(sizeof(double)*2*(N+1));
     double logtotal = log(total);
     double max_freq = INT_MIN;
@@ -3130,7 +3131,7 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
         }
     }
 
-    
+
     for(idx = N - 1; idx >= 0 ;idx--)
     {
         max_freq = INT_MIN;
@@ -3156,7 +3157,7 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
             }
         }
         _route[idx][0] = max_freq;
-        _route[idx][1] = max_x;
+        _route[idx][1] = (double)max_x;
     }
     for(i = 0; i <= N; i++)
     {
@@ -3176,20 +3177,20 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     const int states_num = 4;
     PyObject *item, *t_dict, *t_obs, *res_tuple, *t_list;
     Py_ssize_t i, j;
-    double t_double,t_double_2,em_p,max_prob,prob;
+    double t_double, t_double_2, em_p, max_prob, prob;
     double (*V)[22] = malloc(sizeof(double)*obs_len*22);
     char * states = PyString_AsString(_states);
     char (*path)[22] = malloc(sizeof(char)*obs_len*22);
-    char y,best_state,y0,now_state;
+    char y, best_state, y0, now_state;
     int p;
-    
+
 
     PyObject* emip_p_dict[4];
     PyObject* trans_p_dict[22][2];
     PyObject* py_states[4];
 
     for(i=0;i<states_num;i++)
-        py_states[i] = PyString_FromStringAndSize(states + i, 1);
+        py_states[i] = PyUnicode_FromStringAndSize(states + i, 1);
 
     PrevStatus_str['B'-'B'] = "ES";
     PrevStatus_str['M'-'B'] = "MB";
@@ -3270,10 +3271,10 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
 
     for(i = obs_len - 1; i >= 0; i--)
     {
-        PyList_SetItem(t_list, i, PyString_FromStringAndSize(&now_state, 1));
+        PyList_SetItem(t_list, i, PyUnicode_FromStringAndSize(&now_state, 1));
         now_state = path[i][now_state-'B'];
     }
-    
+
     PyTuple_SetItem(res_tuple, 1, t_list);
     free(V);
     free(path);

@@ -1,7 +1,7 @@
 jieba_fast
 ========
-使用`cpython`重写了计算DAG和HMM中的vitrebi函数，速度大幅提升.
-使用`import jieba_fast as jieba` 可以无缝衔接源代码.
+使用`cpython`重写了原作者计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
+使用`import jieba_fast as jieba` 可以无缝衔接源代码。
 
 特点
 ========
@@ -12,10 +12,12 @@ jieba_fast
 * MIT 授权协议
 
 
+
+
 安装说明
 =======
 
-代码目前对 Python 2/3 兼容，对*unix兼容良好，windows不能保证
+代码目前对 Python 2/3 兼容，对*unix兼容良好，对windows不能保证
 
 * 全自动安装：`pip install jieba_fast` 
 * 半自动安装：先下载 http://pypi.python.org/pypi/jieba_fast/ ，解压后运行 `python setup.py install`
@@ -30,8 +32,12 @@ jieba_fast
 * 采用了动态规划查找最大概率路径, 找出基于词频的最大切分组合
 * 对于未登录词，采用了基于汉字成词能力的 HMM 模型，使用了 Viterbi 算法
 
+
+
+
 主要功能
 =======
+
 详情见 https://github.com/fxsjy/jieba
 
 
@@ -68,6 +74,8 @@ print('-'.join(jieba.lcut(text, HMM=False)))
 测试过程：
 先按行读取文本《围城》到一个数组里，然后循环对《围城》每行文字作为一个句子进行分词。然后循环对围城这本书分词50次。分词算法分别采用【开启HMM的精确模式】、【关闭HMM的精确模式】、【开启HMM的搜索引擎模式】、【开启HMM的搜索引擎模式】
 具体测试数据如下：
+
+
 |            | 开启HMM的精确模式 | 关闭HMM的精确模式 | 开启HMM的搜索引擎模式 | 关闭HMM的搜索引擎模式 |
 | ---------- | ---------- | ---------- | ------------ | ------------ |
 | jieba      | 65.1s      | 39.9s      | 67.5s        | 40.5s        |
@@ -94,3 +102,10 @@ nums of jieba      results:  597151
 nums of jieba_fast results:  597151
 Are they exactly the same?  True
 ```
+
+
+
+鸣谢
+======
+
+"结巴"中文分词作者: [SunJunyi](https://github.com/fxsjy)

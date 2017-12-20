@@ -14,14 +14,14 @@ jieba_fast_functions_py3 = Extension('_jieba_fast_functions',
 
 if platform.python_version().startswith('2'):
     setup(name='jieba_fast',
-          version='0.39',
-        description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
-        long_description=LONGDOC,
-        author='Sun, Junyi, deepcs',
-        author_email='shaohao97@gmail.com',
-        url='https://github.com/deepcs233/jieba_fast',
-        license="MIT",
-        classifiers=[
+          version='0.41',
+          description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
+          long_description=LONGDOC,
+          author='Sun, Junyi, deepcs',
+          author_email='shaohao97@gmail.com',
+          url='https://github.com/deepcs233/jieba_fast',
+          license="MIT",
+          classifiers=[
             'Intended Audience :: Developers',
             'License :: OSI Approved :: MIT License',
             'Operating System :: OS Independent',
