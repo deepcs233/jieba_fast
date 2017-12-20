@@ -4,20 +4,20 @@ import platform
 
 LONGDOC = 'Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>'
 
-jieba_fast_functions_py2 = Extension('_jieba_fast_functions',
-                         sources=['jieba_fast_functions_wrap_py2.c'],
+jieba_fast_functions_py2 = Extension('_jieba_fast_functions_py2',
+                         sources=['source/jieba_fast_functions_wrap_py2.c'],
                            )
 
-jieba_fast_functions_py3 = Extension('_jieba_fast_functions',
-                         sources=['jieba_fast_functions_wrap_py3.c'],
+jieba_fast_functions_py3 = Extension('_jieba_fast_functions_py3',
+                         sources=['source/jieba_fast_functions_wrap_py3.c'],
                            )
 
 if platform.python_version().startswith('2'):
     setup(name='jieba_fast',
-          version='0.41',
+          version='0.43',
           description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
           long_description=LONGDOC,
-          author='Sun, Junyi, deepcs',
+          author='Sun, Junyi, deepcs233',
           author_email='shaohao97@gmail.com',
           url='https://github.com/deepcs233/jieba_fast',
           license="MIT",
@@ -39,19 +39,19 @@ if platform.python_version().startswith('2'):
             'Topic :: Text Processing :: Linguistic',
         ],
         keywords='NLP,tokenizing,Chinese word segementation',
-        packages=['jieba_fast'],
+        packages=['jieba_fast', 'source'],
         package_dir={'jieba_fast':'jieba_fast'},
-        package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*'], 'source':["*.*"]},
         ext_modules = [jieba_fast_functions_py2],
     )
 
 
 if platform.python_version().startswith('3'):
     setup(name='jieba_fast',
-          version='0.39',
+          version='0.43',
         description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
         long_description=LONGDOC,
-        author='Sun, Junyi, deepcs',
+        author='Sun, Junyi, deepcs233',
         author_email='shaohao97@gmail.com',
         url='https://github.com/deepcs233/jieba_fast',
         license="MIT",
@@ -73,8 +73,8 @@ if platform.python_version().startswith('3'):
             'Topic :: Text Processing :: Linguistic',
         ],
         keywords='NLP,tokenizing,Chinese word segementation',
-        packages=['jieba_fast'],
+        packages=['jieba_fast', 'source'],
         package_dir={'jieba_fast':'jieba_fast'},
-        package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*'], 'source':["*.*"]},
         ext_modules = [jieba_fast_functions_py3],
     )
