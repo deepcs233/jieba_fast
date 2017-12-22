@@ -1,6 +1,6 @@
 jieba_fast
 ========
-使用`python`重写了原作者计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
+使用`cpython`重写了原作者计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
 使用`import jieba_fast as jieba` 可以无缝衔接源代码。
 
 特点
