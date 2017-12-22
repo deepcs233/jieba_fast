@@ -4,8 +4,12 @@ import os
 import sys
 import pickle
 from .._compat import *
-import _jieba_fast_functions
+import platform
 
+if platform.python_version().startswith('2'):
+    import _jieba_fast_functions_py2 as _jieba_fast_functions
+else:
+    import _jieba_fast_functions_py3 as _jieba_fast_functions
 MIN_FLOAT = -3.14e100
 
 PROB_START_P = "prob_start.p"

@@ -14,7 +14,12 @@ from math import log
 from hashlib import md5
 from ._compat import *
 from . import finalseg
-import _jieba_fast_functions
+import platform
+
+if platform.python_version().startswith('2'):
+    import _jieba_fast_functions_py2 as _jieba_fast_functions
+else:
+    import _jieba_fast_functions_py3 as _jieba_fast_functions
 
 if os.name == 'nt':
     from shutil import move as _replace_file

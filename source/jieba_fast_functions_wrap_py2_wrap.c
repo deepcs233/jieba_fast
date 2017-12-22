@@ -2994,16 +2994,16 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 #endif
 
 /*-----------------------------------------------
-              @(target):= _jieba_fast_functions.so
+              @(target):= __jieba_fast_functions_py2.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__jieba_fast_functions
+#  define SWIG_init    PyInit___jieba_fast_functions_py2
 
 #else
-#  define SWIG_init    init_jieba_fast_functions
+#  define SWIG_init    init__jieba_fast_functions_py2
 
 #endif
-#define SWIG_name    "_jieba_fast_functions"
+#define SWIG_name    "__jieba_fast_functions_py2"
 
 #define SWIGVERSION 0x030012 
 #define SWIG_VERSION SWIGVERSION
@@ -3190,7 +3190,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     PyObject* py_states[4];
 
     for(i=0;i<states_num;i++)
-        py_states[i] = PyUnicode_FromStringAndSize(states + i, 1);
+        py_states[i] = PyString_FromStringAndSize(states + i, 1);
 
     PrevStatus_str['B'-'B'] = "ES";
     PrevStatus_str['M'-'B'] = "MB";
@@ -3271,7 +3271,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
 
     for(i = obs_len - 1; i >= 0; i--)
     {
-        PyList_SetItem(t_list, i, PyUnicode_FromStringAndSize(&now_state, 1));
+        PyList_SetItem(t_list, i, PyString_FromStringAndSize(&now_state, 1));
         now_state = path[i][now_state-'B'];
     }
 
