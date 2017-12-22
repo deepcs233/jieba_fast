@@ -1,4 +1,4 @@
-%module _jieba_fast_functions_py3
+%module jieba_fast_functions_py3
 
 
 

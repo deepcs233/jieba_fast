@@ -9,12 +9,12 @@ if _swig_python_version_info >= (2, 7, 0):
     def swig_import_helper():
         import importlib
         pkg = __name__.rpartition('.')[0]
-        mname = '.'.join((pkg, '__jieba_fast_functions_py3')).lstrip('.')
+        mname = '.'.join((pkg, '_jieba_fast_functions_py2')).lstrip('.')
         try:
             return importlib.import_module(mname)
         except ImportError:
-            return importlib.import_module('__jieba_fast_functions_py3')
-    __jieba_fast_functions_py3 = swig_import_helper()
+            return importlib.import_module('_jieba_fast_functions_py2')
+    _jieba_fast_functions_py2 = swig_import_helper()
     del swig_import_helper
 elif _swig_python_version_info >= (2, 6, 0):
     def swig_import_helper():
@@ -22,20 +22,20 @@ elif _swig_python_version_info >= (2, 6, 0):
         import imp
         fp = None
         try:
-            fp, pathname, description = imp.find_module('__jieba_fast_functions_py3', [dirname(__file__)])
+            fp, pathname, description = imp.find_module('_jieba_fast_functions_py2', [dirname(__file__)])
         except ImportError:
-            import __jieba_fast_functions_py3
-            return __jieba_fast_functions_py3
+            import _jieba_fast_functions_py2
+            return _jieba_fast_functions_py2
         try:
-            _mod = imp.load_module('__jieba_fast_functions_py3', fp, pathname, description)
+            _mod = imp.load_module('_jieba_fast_functions_py2', fp, pathname, description)
         finally:
             if fp is not None:
                 fp.close()
         return _mod
-    __jieba_fast_functions_py3 = swig_import_helper()
+    _jieba_fast_functions_py2 = swig_import_helper()
     del swig_import_helper
 else:
-    import __jieba_fast_functions_py3
+    import _jieba_fast_functions_py2
 del _swig_python_version_info
 
 try:
@@ -97,20 +97,20 @@ except __builtin__.Exception:
 
 
 def _calc(FREQ, sentence, DAG, route, total):
-    return __jieba_fast_functions_py3._calc(FREQ, sentence, DAG, route, total)
-_calc = __jieba_fast_functions_py3._calc
+    return _jieba_fast_functions_py2._calc(FREQ, sentence, DAG, route, total)
+_calc = _jieba_fast_functions_py2._calc
 
 def _get_DAG(DAG, FREQ, sentence):
-    return __jieba_fast_functions_py3._get_DAG(DAG, FREQ, sentence)
-_get_DAG = __jieba_fast_functions_py3._get_DAG
+    return _jieba_fast_functions_py2._get_DAG(DAG, FREQ, sentence)
+_get_DAG = _jieba_fast_functions_py2._get_DAG
 
 def _get_DAG_and_calc(FREQ, sentence, route, total):
-    return __jieba_fast_functions_py3._get_DAG_and_calc(FREQ, sentence, route, total)
-_get_DAG_and_calc = __jieba_fast_functions_py3._get_DAG_and_calc
+    return _jieba_fast_functions_py2._get_DAG_and_calc(FREQ, sentence, route, total)
+_get_DAG_and_calc = _jieba_fast_functions_py2._get_DAG_and_calc
 
 def _viterbi(obs, _states, start_p, trans_p, emip_p):
-    return __jieba_fast_functions_py3._viterbi(obs, _states, start_p, trans_p, emip_p)
-_viterbi = __jieba_fast_functions_py3._viterbi
+    return _jieba_fast_functions_py2._viterbi(obs, _states, start_p, trans_p, emip_p)
+_viterbi = _jieba_fast_functions_py2._viterbi
 # This file is compatible with both classic and new-style classes.
 
 

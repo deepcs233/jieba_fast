@@ -39,9 +39,9 @@ if platform.python_version().startswith('2'):
             'Topic :: Text Processing :: Linguistic',
         ],
         keywords='NLP,tokenizing,Chinese word segementation',
-        packages=['jieba_fast', 'source'],
+        packages=['jieba_fast'],
         package_dir={'jieba_fast':'jieba_fast'},
-          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*'], 'source':["*.*"]},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
         ext_modules = [jieba_fast_functions_py2],
     )
 
@@ -73,8 +73,8 @@ if platform.python_version().startswith('3'):
             'Topic :: Text Processing :: Linguistic',
         ],
         keywords='NLP,tokenizing,Chinese word segementation',
-        packages=['jieba_fast', 'source'],
+        packages=['jieba_fast'],
         package_dir={'jieba_fast':'jieba_fast'},
-          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*'], 'source':["*.*"]},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
         ext_modules = [jieba_fast_functions_py3],
     )

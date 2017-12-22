@@ -2994,16 +2994,16 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 #endif
 
 /*-----------------------------------------------
-              @(target):= __jieba_fast_functions_py2.so
+              @(target):= _jieba_fast_functions_py2.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit___jieba_fast_functions_py2
+#  define SWIG_init    PyInit__jieba_fast_functions_py2
 
 #else
-#  define SWIG_init    init__jieba_fast_functions_py2
+#  define SWIG_init    init_jieba_fast_functions_py2
 
 #endif
-#define SWIG_name    "__jieba_fast_functions_py2"
+#define SWIG_name    "_jieba_fast_functions_py2"
 
 #define SWIGVERSION 0x030012 
 #define SWIG_VERSION SWIGVERSION
