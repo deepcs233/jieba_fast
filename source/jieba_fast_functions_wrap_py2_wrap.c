@@ -3057,6 +3057,8 @@ int _calc(PyObject* FREQ, PyObject* sentence,PyObject* DAG, PyObject * route, do
                 max_freq = fq_last;
                 max_x = x;
             }
+            if(slice_of_sentence!=NULL)
+                Py_DecRef(slice_of_sentence);
         }
         tuple_last = PyTuple_New(2);
         PyTuple_SetItem(tuple_last, 0, PyFloat_FromDouble(max_freq));
@@ -3122,8 +3124,12 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
                 points[k] ++;
             }
             i += 1;
+            if(frag!=NULL)
+                Py_DecRef(frag);
             frag = PySequence_GetSlice(sentence, k ,i + 1);
         }
+        if(frag!=NULL)
+            Py_DecRef(frag);
         if(points[k] == 0)
         {
             DAG[k][0] = k;
@@ -3155,6 +3161,8 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
                 max_freq = fq_last;
                 max_x = x;
             }
+            if (slice_of_sentence != NULL)
+                Py_DecRef(slice_of_sentence);
         }
         _route[idx][0] = max_freq;
         _route[idx][1] = (double)max_x;
@@ -3166,6 +3174,7 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
     free(DAG);
     free(points);
     free(_route);
+
     return 1;
 }
 
@@ -3175,7 +3184,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     const Py_ssize_t obs_len = PySequence_Size(obs);
     const char* PrevStatus_str[22];
     const int states_num = 4;
-    PyObject *item, *t_dict, *t_obs, *res_tuple, *t_list;
+    PyObject *item, *t_dict, *t_obs, *res_tuple, *t_list, *ttemp;
     Py_ssize_t i, j;
     double t_double, t_double_2, em_p, max_prob, prob;
     double (*V)[22] = malloc(sizeof(double)*obs_len*22);
@@ -3215,7 +3224,9 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     {
         t_dict = PyDict_GetItem(emip_p, py_states[i]);
         t_double = -DBL_MAX;
-        item = PyDict_GetItem(t_dict, PySequence_GetItem(obs, 0));
+        ttemp = PySequence_GetItem(obs, 0);
+        item = PyDict_GetItem(t_dict, ttemp);
+        Py_DecRef(ttemp);
         if(item != NULL)
             t_double = PyFloat_AsDouble(item);
         t_double_2 = PyFloat_AsDouble(PyDict_GetItem(start_p, py_states[i]));
@@ -3253,6 +3264,8 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
             V[i][y-'B'] = max_prob;
             path[i][y-'B'] = best_state;
         }
+        if(t_obs!=NULL)
+            Py_DecRef(t_obs);
     }
 
     max_prob = V[obs_len-1]['E'-'B'];
@@ -3265,7 +3278,8 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     }
 
     res_tuple = PyTuple_New(2);
-    PyTuple_SetItem(res_tuple, 0, PyFloat_FromDouble(max_prob));
+    ttemp = PyFloat_FromDouble(max_prob);
+    PyTuple_SetItem(res_tuple, 0, ttemp);
     t_list = PyList_New(obs_len);
     now_state = best_state;
 
@@ -3278,10 +3292,15 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     PyTuple_SetItem(res_tuple, 1, t_list);
     free(V);
     free(path);
+
+    Py_DecRef(py_states[0]);
+    Py_DecRef(py_states[1]);
+    Py_DecRef(py_states[2]);
+    Py_DecRef(py_states[3]);
+
     return res_tuple;
 
 }
-
 
 
 
