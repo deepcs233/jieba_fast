@@ -5,16 +5,16 @@ import platform
 LONGDOC = 'Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>'
 
 jieba_fast_functions_py2 = Extension('_jieba_fast_functions_py2',
-                         sources=['source/jieba_fast_functions_wrap_py2_wrap.c'],
+                         sources=['jieba_fast/source/jieba_fast_functions_wrap_py2_wrap.c'],
                            )
 
 jieba_fast_functions_py3 = Extension('_jieba_fast_functions_py3',
-                         sources=['source/jieba_fast_functions_wrap_py3_wrap.c'],
+                         sources=['jieba_fast/source/jieba_fast_functions_wrap_py3_wrap.c'],
                            )
 
 if platform.python_version().startswith('2'):
     setup(name='jieba_fast',
-          version='0.45',
+          version='0.47',
           description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
           long_description=LONGDOC,
           author='Sun, Junyi, deepcs233',
@@ -41,14 +41,14 @@ if platform.python_version().startswith('2'):
         keywords='NLP,tokenizing,Chinese word segementation',
         packages=['jieba_fast'],
         package_dir={'jieba_fast':'jieba_fast'},
-          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*','source/*']},
         ext_modules = [jieba_fast_functions_py2],
     )
 
 
 if platform.python_version().startswith('3'):
     setup(name='jieba_fast',
-          version='0.45',
+          version='0.47',
         description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
         long_description=LONGDOC,
         author='Sun, Junyi, deepcs233',
@@ -75,6 +75,6 @@ if platform.python_version().startswith('3'):
         keywords='NLP,tokenizing,Chinese word segementation',
         packages=['jieba_fast'],
         package_dir={'jieba_fast':'jieba_fast'},
-          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*']},
+          package_data={'jieba_fast':['*.*','finalseg/*','analyse/*','posseg/*','source/*']},
         ext_modules = [jieba_fast_functions_py3],
     )

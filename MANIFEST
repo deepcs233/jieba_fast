@@ -6,6 +6,8 @@ jieba_fast/__main__.py
 jieba_fast/_compat.py
 jieba_fast/_compat.pyc
 jieba_fast/dict.txt
+jieba_fast/jieba_fast_functions_py2.py
+jieba_fast/jieba_fast_functions_py3.py
 jieba_fast/analyse/__init__.py
 jieba_fast/analyse/analyzer.py
 jieba_fast/analyse/idf.txt
@@ -13,6 +15,8 @@ jieba_fast/analyse/textrank.py
 jieba_fast/analyse/tfidf.py
 jieba_fast/finalseg/__init__.py
 jieba_fast/finalseg/__init__.pyc
+jieba_fast/finalseg/jieba_fast_functions_py2.py
+jieba_fast/finalseg/jieba_fast_functions_py3.py
 jieba_fast/finalseg/prob_emit.p
 jieba_fast/finalseg/prob_emit.py
 jieba_fast/finalseg/prob_emit.pyc
@@ -32,10 +36,12 @@ jieba_fast/posseg/prob_start.py
 jieba_fast/posseg/prob_trans.p
 jieba_fast/posseg/prob_trans.py
 jieba_fast/posseg/viterbi.py
-source/jieba_fast_functions_wrap_py2.c
-source/jieba_fast_functions_wrap_py2.i
-source/jieba_fast_functions_wrap_py3.c
-source/jieba_fast_functions_wrap_py3.i
+jieba_fast/source/jieba_fast_functions_py2.py
+jieba_fast/source/jieba_fast_functions_py3.py
+jieba_fast/source/jieba_fast_functions_wrap_py2.i
+jieba_fast/source/jieba_fast_functions_wrap_py2_wrap.c
+jieba_fast/source/jieba_fast_functions_wrap_py3.i
+jieba_fast/source/jieba_fast_functions_wrap_py3_wrap.c
 test/test.py
 test/test_bug.py
 test/test_change_dictpath.py
