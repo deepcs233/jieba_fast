@@ -177,7 +177,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     Py_ssize_t i, j;
     double t_double, t_double_2, em_p, max_prob, prob;
     double (*V)[22] = malloc(sizeof(double)*obs_len*22);
-    char * states = PyString_AsString(_states);
+    char * states = PyUnicode_AsUTF8(_states);
     char (*path)[22] = malloc(sizeof(char)*obs_len*22);
     char y, best_state, y0, now_state;
     int p;
