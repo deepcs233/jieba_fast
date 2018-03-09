@@ -1,0 +1,2 @@
+_jieba_fast_functions_py2
+jieba_fast

@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: jieba-fast
+Version: 0.49
+Summary: Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>
+Home-page: https://github.com/deepcs233/jieba_fast
+Author: Sun, Junyi, deepcs233
+Author-email: shaohao97@gmail.com
+License: MIT
+Keywords: NLP,tokenizing,Chinese word segementation
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: Chinese (Traditional)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: Topic :: Text Processing :: Linguistic
+
+Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>
+
+

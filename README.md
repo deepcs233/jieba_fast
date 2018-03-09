@@ -17,13 +17,13 @@ jieba_fast
 安装说明
 =======
 
-代码目前对 Python 2/3 兼容，对*unix兼容良好，对windows不能保证
+代码目前对 Python 2/3 兼容，对*unix兼容良好，windows本地编译测试通过，但不保证。
 
 * 全自动安装：`pip install jieba_fast`
 * 半自动安装：先下载 http://pypi.python.org/pypi/jieba_fast/ ，解压后运行 `python setup.py install`
 
-
-
+关于windows的编译过程中可能会有一些坑，可以尝试我编译好的版本，将编译好的放在了windows/下，分别对应的是python2.7与python3.5。
+如果你想安装python2版本的jiaba_fast，将python2下的所有目录与文件拷至对应python的lib/site-packages下就ok。
 
 算法
 ========
