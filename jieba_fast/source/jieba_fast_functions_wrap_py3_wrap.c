@@ -3222,7 +3222,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     for(i=0;i<states_num;i++)
     {
         t_dict = PyDict_GetItem(emip_p, py_states[i]);
-        t_double = -DBL_MAX;
+        t_double = -999999.0;
         ttemp = PySequence_GetItem(obs, 0);
         item = PyDict_GetItem(t_dict, ttemp);
         Py_DecRef(ttemp);
@@ -3232,18 +3232,17 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
         V[0][states[i]-'B'] = t_double + t_double_2;
         path[0][states[i]-'B'] = states[i];
     }
-
     for(i=1;i<obs_len;i++)
     {
         t_obs = PySequence_GetItem(obs, i);
         for(j=0;j<states_num;j++)
         {
-            em_p = -DBL_MAX;
+            em_p = -999999.0;
             y = states[j];
             item = PyDict_GetItem(emip_p_dict[j], t_obs);
             if(item != NULL)
                 em_p = PyFloat_AsDouble(item);
-            max_prob = -DBL_MAX;
+            max_prob = -999999999.0;
             for(p = 0; p < 2; p++)
             {
                 prob = em_p;
@@ -3251,7 +3250,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
                 prob += V[i - 1][y0-'B'];
                 item = PyDict_GetItem(trans_p_dict[y-'B'][p], py_states[j]);
                 if (item==NULL)
-                    prob += -DBL_MAX;
+                    prob += -999999.0;
                 else
                     prob += PyFloat_AsDouble(item);
                 if (prob>max_prob)
@@ -3295,7 +3294,6 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     Py_DecRef(py_states[1]);
     Py_DecRef(py_states[2]);
     Py_DecRef(py_states[3]);
-
     return res_tuple;
 
 }
