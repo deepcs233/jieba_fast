@@ -70,12 +70,12 @@ def __cut(sentence):
     begin, nexti = 0, 0
     for i, char in enumerate(sentence):
         pos = pos_list[i]
-        if pos == b'B':
+        if pos == 'B':
             begin = i
-        elif pos == b'E':
+        elif pos == 'E':
             yield sentence[begin:i + 1]
             nexti = i + 1
-        elif pos == b'S':
+        elif pos == 'S':
             yield char
             nexti = i + 1
     if nexti < len(sentence):

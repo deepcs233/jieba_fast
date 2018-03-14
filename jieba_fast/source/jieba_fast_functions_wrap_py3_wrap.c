@@ -3097,7 +3097,7 @@ int _get_DAG(PyObject* DAG, PyObject* FREQ, PyObject* sentence)
 int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, double total)
 {
     const Py_ssize_t N = PySequence_Size(sentence);
-    Py_ssize_t (*DAG)[12] = malloc(sizeof(Py_ssize_t)*12*N);
+    Py_ssize_t (*DAG)[20] = malloc(sizeof(Py_ssize_t)*20*N);
     Py_ssize_t *points = (Py_ssize_t*)malloc(sizeof(Py_ssize_t)*N);
     Py_ssize_t k, i, idx, max_x, t_list_len, fq, x;
     PyObject *frag, *t_f, *slice_of_sentence, *o_freq;
@@ -3177,7 +3177,7 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
     return 1;
 }
 
-
+#define MIN_FLOAT -3.14e100
 PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject* trans_p, PyObject* emip_p)
 {
     const Py_ssize_t obs_len = PySequence_Size(obs);
@@ -3222,7 +3222,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
     for(i=0;i<states_num;i++)
     {
         t_dict = PyDict_GetItem(emip_p, py_states[i]);
-        t_double = -999999.0;
+        t_double = MIN_FLOAT;
         ttemp = PySequence_GetItem(obs, 0);
         item = PyDict_GetItem(t_dict, ttemp);
         Py_DecRef(ttemp);
@@ -3237,12 +3237,13 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
         t_obs = PySequence_GetItem(obs, i);
         for(j=0;j<states_num;j++)
         {
-            em_p = -999999.0;
+            em_p = MIN_FLOAT;
             y = states[j];
             item = PyDict_GetItem(emip_p_dict[j], t_obs);
             if(item != NULL)
                 em_p = PyFloat_AsDouble(item);
-            max_prob = -999999999.0;
+            max_prob = MIN_FLOAT;
+            best_state = '\0';
             for(p = 0; p < 2; p++)
             {
                 prob = em_p;
@@ -3250,13 +3251,22 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
                 prob += V[i - 1][y0-'B'];
                 item = PyDict_GetItem(trans_p_dict[y-'B'][p], py_states[j]);
                 if (item==NULL)
-                    prob += -999999.0;
+                    prob += MIN_FLOAT;
                 else
                     prob += PyFloat_AsDouble(item);
                 if (prob>max_prob)
                 {
                     max_prob = prob;
                     best_state = y0;
+                }
+            }
+            if(best_state == '\0')
+            {
+                for(p = 0; p < 2; p++)
+                {
+                    y0 = PrevStatus_str[y-'B'][p];
+                    if(y0 > best_state)
+                        best_state = y0;
                 }
             }
             V[i][y-'B'] = max_prob;

@@ -3245,6 +3245,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
             if(item != NULL)
                 em_p = PyFloat_AsDouble(item);
             max_prob = -DBL_MAX;
+            best_state = '\0';
             for(p = 0; p < 2; p++)
             {
                 prob = em_p;
@@ -3259,6 +3260,15 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
                 {
                     max_prob = prob;
                     best_state = y0;
+                }
+            }
+            if(best_state == '\0')
+            {
+                for(p = 0; p < 2; p++)
+                {
+                    y0 = PrevStatus_str[y-'B'][p];
+                    if(y0 > best_state)
+                        best_state = y0;
                 }
             }
             V[i][y-'B'] = max_prob;
