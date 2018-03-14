@@ -3295,7 +3295,7 @@ PyObject* _viterbi(PyObject* obs, PyObject* _states, PyObject* start_p, PyObject
 
     for(i = obs_len - 1; i >= 0; i--)
     {
-        PyList_SetItem(t_list, i, PyString_FromStringAndSize(&now_state, 1));
+        PyList_SetItem(t_list, i, PyUnicode_FromStringAndSize(&now_state, 1));
         now_state = path[i][now_state-'B'];
     }
 
