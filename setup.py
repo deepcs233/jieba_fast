@@ -14,7 +14,7 @@ jieba_fast_functions_py3 = Extension('_jieba_fast_functions_py3',
 
 if platform.python_version().startswith('2'):
     setup(name='jieba_fast',
-          version='0.52',
+          version='0.53',
           description='Use C and Swig to Speed up jieba<Chinese Words Segementation Utilities>',
           long_description=LONGDOC,
           author='Sun, Junyi, deepcs233',
