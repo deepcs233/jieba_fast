@@ -146,7 +146,7 @@ int _get_DAG_and_calc(PyObject* FREQ, PyObject* sentence, PyObject * route, doub
             }
             fq_2 = _route[x + 1][0];
             fq_last = log((double)fq) - logtotal + fq_2;
-            if(fq_last > max_freq)
+            if(fq_last >= max_freq)
             {
                 max_freq = fq_last;
                 max_x = x;
