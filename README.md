@@ -1,3 +1,7 @@
+[![Downloads](https://pepy.tech/badge/jieba-fast)](https://pepy.tech/project/jieba-fast)
+[![Downloads](https://pepy.tech/badge/jieba-fast/month)](https://pepy.tech/project/jieba-fast)
+[![Downloads](https://pepy.tech/badge/jieba-fast/week)](https://pepy.tech/project/jieba-fast)
+
 jieba_fast
 ========
 使用`cpython`重写了jieba分词库中计算DAG和HMM中的vitrebi函数，速度得到大幅提升。
